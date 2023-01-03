@@ -9,6 +9,7 @@ import { RecipieDetailComponent } from './components/recipies/recipie-detail/rec
 import { RecipieItemComponent } from './components/recipies/recipie-list/recipie-item/recipie-item.component';
 import { ShoopingListComponent } from './components/shooping-list/shooping-list.component';
 import { ShoppingEditComponent } from './components/shooping-list/shopping-edit/shopping-edit.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,10 @@ import { ShoppingEditComponent } from './components/shooping-list/shopping-edit/
     RecipieDetailComponent,
     RecipieItemComponent,
     ShoopingListComponent,
-    ShoppingEditComponent
+    ShoppingEditComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule, FormsModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
