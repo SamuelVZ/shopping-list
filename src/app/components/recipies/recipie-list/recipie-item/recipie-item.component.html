@@ -1,1 +1,14 @@
-<p>recipie-item works!</p>
+<div class="list-group">
+  <a href="" class="list-group-item list-group-item-action">
+
+    <div class="d-flex w-100 justify-content-between">
+      <div>
+        <h4 class="list-group-item-heading"> {{recipe.name}}</h4>
+        <p class="list-group-item-text">{{recipe.description}}</p>
+      </div>
+      <span>
+        <img [src]="recipe.imagePath" alt="{{ recipe.name }}" class="img-fluid img-thumbnail" style="max-height: 73px;">
+      </span>
+    </div>
+  </a>
+</div>
