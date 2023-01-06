@@ -8,6 +8,7 @@ import { Recipie } from '../recipe.model';
 })
 export class RecipieDetailComponent implements OnInit {
   @Input() recipe!: Recipie;
+  isOpen = false;
 
   constructor() {}
 

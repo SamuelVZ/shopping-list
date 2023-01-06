@@ -10,14 +10,18 @@
 </div>
 <div class="row">
   <div class="col-xs-12">
+    <!-- ussing directive appDropdown
+    <div class="btn-group" appDropdown role="group"> -->
     <div class="btn-group" role="group">
-      <button type="button" class="btn btn-primary dropdown-toggle">Manage Recipe</button>
-      <ul class="dropdown-menu">
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" (click)="isOpen = !isOpen">
+        Manage Recipe</button>
+      <ul class="dropdown-menu" [ngClass]="{show: isOpen === true}">
         <li><a class="dropdown-item" href="#">To shopping list</a></li>
         <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
         <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
       </ul>
     </div>
+
   </div>
 </div>
 <div class="row">
