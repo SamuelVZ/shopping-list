@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-5">
-    <app-recipie-list (recipieSelectedList)="recipieSelection = $event"></app-recipie-list>
+    <app-recipie-list></app-recipie-list>
   </div>
   <div class="col-md-7">
     <app-recipie-detail *ngIf="recipieSelection; else infoText" [recipe]="recipieSelection"></app-recipie-detail>
