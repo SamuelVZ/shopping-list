@@ -16,9 +16,11 @@
       <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" (click)="isOpen = !isOpen">
         Manage Recipe</button>
       <ul class="dropdown-menu" [ngClass]="{show: isOpen === true}">
-        <li><a class="dropdown-item" href="#">To shopping list</a></li>
-        <li><a class="dropdown-item" href="#">Edit Recipe</a></li>
-        <li><a class="dropdown-item" href="#">Delete Recipe</a></li>
+        <li><a class="dropdown-item" role='button' (click)="onAddToShoppingList()">To shopping
+            list</a>
+        </li>
+        <li><a class="dropdown-item" role='button'>Edit Recipe</a></li>
+        <li><a class="dropdown-item" role='button'>Delete Recipe</a></li>
       </ul>
     </div>
 

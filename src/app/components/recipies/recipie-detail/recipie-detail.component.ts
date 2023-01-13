@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Recipie } from '../recipe.model';
+import { Ingredient } from '../../../shared/models/Ingredient.model';
+import { ShoppingListService } from '../../shooping-list/service/shopping-list.service';
 
 @Component({
   selector: 'app-recipie-detail',
@@ -10,7 +12,11 @@ export class RecipieDetailComponent implements OnInit {
   @Input() recipe!: Recipie;
   isOpen = false;
 
-  constructor() {}
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit(): void {}
+
+  onAddToShoppingList() {
+    this.shoppingListService.addIngredients(this.recipe.ingredients);
+  }
 }
