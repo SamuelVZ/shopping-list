@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipie } from '../recipe.model';
+import { RecipeService } from '../service/recipe.service';
 
 @Component({
   selector: 'app-recipie-list',
@@ -7,28 +8,11 @@ import { Recipie } from '../recipe.model';
   styleUrls: ['./recipie-list.component.css'],
 })
 export class RecipieListComponent implements OnInit {
-  @Output() recipieSelectedList = new EventEmitter<Recipie>();
+  recipes: Recipie[] = [];
 
-  recipies: Recipie[] = [
-    {
-      name: 'test',
-      description: 'this is a test',
-      imagePath:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&webp=true&resize=300,272',
-    },
-    {
-      name: 'test 2',
-      description: 'this is a test',
-      imagePath:
-        'https://images.immediate.co.uk/production/volatile/sites/30/2020/08/chorizo-mozarella-gnocchi-bake-cropped-9ab73a3.jpg?quality=90&webp=true&resize=300,272',
-    },
-  ];
+  constructor(private recipeService: RecipeService) {}
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
-  onRecipeSelected(recipe: Recipie) {
-    this.recipieSelectedList.emit(recipe);
+  ngOnInit(): void {
+    this.recipes = this.recipeService.getRecipes();
   }
 }
