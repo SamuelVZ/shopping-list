@@ -35,4 +35,8 @@ export class RecipeService {
   getRecipes(): Recipie[] {
     return this.recipies.slice();
   }
+
+  getRecipeById(id: number): Recipie {
+    return this.recipies[id];
+  }
 }
