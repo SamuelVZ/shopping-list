@@ -3,7 +3,7 @@ import { Recipie } from '../recipe.model';
 import { Ingredient } from '../../../shared/models/Ingredient.model';
 import { ShoppingListService } from '../../shooping-list/service/shopping-list.service';
 import { RecipeService } from '../service/recipe.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-recipie-detail',
@@ -18,7 +18,8 @@ export class RecipieDetailComponent implements OnInit {
   constructor(
     private shoppingListService: ShoppingListService,
     private recipeService: RecipeService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +31,8 @@ export class RecipieDetailComponent implements OnInit {
 
   onAddToShoppingList() {
     this.shoppingListService.addIngredients(this.recipe.ingredients);
+  }
+  onEdit() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
   }
 }
