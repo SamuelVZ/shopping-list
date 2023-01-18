@@ -8,8 +8,9 @@
 
     <div class="navbar-collapse" [ngClass]="{collapse: collapsed === true}">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"> <a class="nav-link" href="#" (click)="onSelect('recipe')">Recipies</a></li>
-        <li class="nav-item"> <a class="nav-link" href="#" (click)="onSelect('shooping')">Shopping List</a></li>
+        <li class="nav-item"> <a class="nav-link" role="button" routerLinkActive="active"
+            (click)="onSelect('recipes')">Recipies</a></li>
+        <li class="nav-item"> <a class="nav-link" role="button" (click)="onSelect('shooping')">Shopping List</a></li>
       </ul>
       <ul class="navbar-nav">
         <li appDropdown class="nav-item dropdown">
