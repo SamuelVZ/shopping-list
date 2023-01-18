@@ -12,15 +12,7 @@ export class RecipieItemComponent implements OnInit {
   @Input() recipe!: Recipie;
   @Input() id!: number;
 
-  constructor(
-    private recipeService: RecipeService,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {}
-
-  onSelectRecipe() {
-    this.router.navigate([this.id], { relativeTo: this.route });
-  }
 }
