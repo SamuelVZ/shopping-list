@@ -4,7 +4,6 @@
   </div>
   <div class="col-md-7">
     <app-recipie-detail *ngIf="recipieSelection; else infoText" [recipe]="recipieSelection"></app-recipie-detail>
-    <!-- <app-recipie-detail *ngIf="recipieSelection; else infoText"></app-recipie-detail> -->
     <ng-template #infoText>
       <p>Select a Recipe</p>
     </ng-template>
