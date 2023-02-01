@@ -9,7 +9,7 @@ import { RecipieDetailComponent } from './components/recipies/recipie-detail/rec
 import { RecipieItemComponent } from './components/recipies/recipie-list/recipie-item/recipie-item.component';
 import { ShoopingListComponent } from './components/shooping-list/shooping-list.component';
 import { ShoppingEditComponent } from './components/shooping-list/shopping-edit/shopping-edit.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DropdownDirective } from './shared/dropdown.directive';
 import { AppRoutingModule } from './app-routing.module';
 import { RecipeStartComponent } from './components/recipies/recipe-start/recipe-start.component';
@@ -29,7 +29,7 @@ import { RecipeEditComponent } from './components/recipies/recipe-edit/recipe-ed
     RecipeStartComponent,
     RecipeEditComponent,
   ],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [BrowserModule, FormsModule, ReactiveFormsModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
