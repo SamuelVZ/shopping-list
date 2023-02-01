@@ -1,4 +1,10 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { Ingredient } from '../../../shared/models/Ingredient.model';
 import { ShoppingListService } from '../service/shopping-list.service';
 
@@ -8,18 +14,31 @@ import { ShoppingListService } from '../service/shopping-list.service';
   styleUrls: ['./shopping-edit.component.css'],
 })
 export class ShoppingEditComponent implements OnInit {
-  @ViewChild('nameInput') nameInputRef!: ElementRef;
-  @ViewChild('amountInput') amountInputRef!: ElementRef;
+  shoppingListForm!: FormGroup;
 
-  constructor(private shoppingListService: ShoppingListService) {}
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private fb: FormBuilder
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.shoppingListForm = this.fb.group({
+      name: new FormControl('', Validators.required),
+      amount: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[1-9]+[0-9]*$'),
+      ]),
+    });
+  }
 
   onAddItem() {
-    const newIngredient: Ingredient = {
-      name: this.nameInputRef.nativeElement.value,
-      amount: this.amountInputRef.nativeElement.value,
-    };
-    this.shoppingListService.addIngredient(newIngredient);
+    if (this.shoppingListForm.valid) {
+      const newIngredient: Ingredient = {
+        name: this.shoppingListForm.get('name')?.value,
+        amount: this.shoppingListForm.controls['amount'].value,
+      };
+
+      this.shoppingListService.addIngredient(newIngredient);
+    }
   }
 }
