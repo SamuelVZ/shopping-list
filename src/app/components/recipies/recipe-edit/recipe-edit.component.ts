@@ -47,8 +47,11 @@ export class RecipeEditComponent implements OnInit {
         for (let ingredient of recipe.ingredients) {
           recipeIngredients.push(
             this.fb.group({
-              name: [ingredient.name],
-              amount: [ingredient.amount],
+              name: [ingredient.name, Validators.required],
+              amount: [
+                ingredient.amount,
+                [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)],
+              ],
             })
           );
         }
@@ -61,6 +64,20 @@ export class RecipeEditComponent implements OnInit {
       description: [recipeDescription, Validators.required],
       ingredients: recipeIngredients,
     });
+  }
+
+  onAddIngredient() {
+    const ingredients = this.recipeForm.controls['ingredients'] as FormArray;
+
+    ingredients.push(
+      this.fb.group({
+        name: ['', Validators.required],
+        amount: [
+          '',
+          [Validators.required, Validators.pattern(/^[1-9]+[0-9]*$/)],
+        ],
+      })
+    );
   }
 
   get controls() {
