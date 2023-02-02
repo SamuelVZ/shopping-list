@@ -34,19 +34,14 @@ export class RecipeEditComponent implements OnInit {
 
     if (this.editMode) {
       this.recipeService.updateRecipe(this.id, newRecipe);
-      this.router.navigate([`/recipes/${this.id}`]);
     } else {
       this.recipeService.addRecipe(newRecipe);
-      this.router.navigate(['/recipes']);
     }
+    this.onCancel();
   }
 
   onCancel() {
-    if (this.editMode) {
-      this.router.navigate([`/recipes/${this.id}`]);
-    } else {
-      this.router.navigate(['/recipes']);
-    }
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   private initForm() {
