@@ -8,6 +8,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
+  isLoginMode = true;
 
   constructor(private fb: FormBuilder) {}
 
@@ -20,5 +21,9 @@ export class AuthComponent implements OnInit {
 
   onSubmit() {
     console.log(this.authForm);
+  }
+
+  onSwitchMode() {
+    this.isLoginMode = !this.isLoginMode;
   }
 }
