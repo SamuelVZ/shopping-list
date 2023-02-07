@@ -6,6 +6,7 @@ import { ShoopingListComponent } from './components/shooping-list/shooping-list.
 import { RecipieDetailComponent } from './components/recipies/recipie-detail/recipie-detail.component';
 import { RecipeStartComponent } from './components/recipies/recipe-start/recipe-start.component';
 import { RecipeEditComponent } from './components/recipies/recipe-edit/recipe-edit.component';
+import { RecipesResolver } from './components/recipies/recipes.resolver';
 
 const routes: Routes = [
   { path: '', redirectTo: '/recipes', pathMatch: 'full' },
@@ -15,8 +16,16 @@ const routes: Routes = [
     children: [
       { path: '', component: RecipeStartComponent },
       { path: 'new', component: RecipeEditComponent }, //put it before the path with a paramether :id
-      { path: ':id', component: RecipieDetailComponent },
-      { path: ':id/edit', component: RecipeEditComponent },
+      {
+        path: ':id',
+        component: RecipieDetailComponent,
+        resolve: [RecipesResolver],
+      },
+      {
+        path: ':id/edit',
+        component: RecipeEditComponent,
+        resolve: [RecipesResolver],
+      },
     ],
   },
   { path: 'shopping-list', component: ShoopingListComponent },
