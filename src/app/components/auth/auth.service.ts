@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, throwError, Subject, tap } from 'rxjs';
+import { catchError, throwError, Subject, tap, BehaviorSubject } from 'rxjs';
 import { User } from './user.model';
 
 export interface AuthResponseData {
@@ -19,7 +19,9 @@ export interface AuthResponseData {
   providedIn: 'root',
 })
 export class AuthService {
-  user = new Subject<User>();
+  //it holds the previous value, so you can get it and not wait for the following next()
+  user = new BehaviorSubject<User | null>(null);
+  // user = new Subject<User>();
 
   constructor(private http: HttpClient) {}
 
