@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService, AuthResponseData } from './auth.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-auth',
@@ -15,7 +16,11 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   error: string | null = null;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.authForm = this.fb.group({
@@ -53,6 +58,7 @@ export class AuthComponent implements OnInit {
         complete: () => {
           this.authForm.reset();
           this.isLoading = false;
+          this.router.navigate(['/recipes']);
         },
       });
     }
