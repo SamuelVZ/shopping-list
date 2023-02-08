@@ -1,7 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from './auth.service';
+import { AuthService, AuthResponseData } from './auth.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth',
@@ -11,6 +12,8 @@ import { AuthService } from './auth.service';
 export class AuthComponent implements OnInit {
   authForm!: FormGroup;
   isLoginMode = true;
+  isLoading = false;
+  error: string | null = null;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -21,25 +24,37 @@ export class AuthComponent implements OnInit {
     });
   }
 
-  async onSubmit() {
+  onSubmit() {
     if (this.authForm.valid) {
       const email = this.authForm.value.email;
       const password = this.authForm.value.password;
 
+      let authObersvable: Observable<AuthResponseData>;
+
+      this.isLoading = true;
+
       if (this.isLoginMode) {
+        authObersvable = this.authService.login(email, password);
       } else {
-        await this.authService.signup(email, password).subscribe({
-          next: (response) => {
-            console.log(response);
-          },
-          error: (e: HttpErrorResponse) => {
-            console.log(e.error.error.message);
-          },
-          complete: () => {
-            this.authForm.reset();
-          },
-        });
+        authObersvable = this.authService.signup(email, password);
       }
+
+      //the observable will be only of one type because of the if else block,
+      // since we are making the same operations on the subscription on both we make only one subscription
+      authObersvable.subscribe({
+        next: (response) => {
+          console.log(response);
+        },
+        error: (e) => {
+          console.log(e);
+          this.error = e;
+          this.isLoading = false;
+        },
+        complete: () => {
+          this.authForm.reset();
+          this.isLoading = false;
+        },
+      });
     }
   }
 
