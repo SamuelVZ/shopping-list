@@ -28,10 +28,6 @@ export class DropdownDirective {
         'show'
       );
     } else {
-      console.log(
-        'know more about childrens',
-        this.theElementRef.nativeElement.children[1]
-      );
       this.theRenderer.addClass(
         this.theElementRef.nativeElement.children[1],
         'show'
