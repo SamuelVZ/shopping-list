@@ -30,30 +30,30 @@ export class DataStorageService {
   }
 
   fetchRecipes() {
-    return this.authService.user.pipe(
-      take(1), //to take one value from the observable and then unsubscribe
-      exhaustMap((user) => {
-        //waits for the fist observable to complete (authService.user), then return a new obervable that replaces the previous one
-        let userToken: string = '';
-        if (user) {
-          userToken = user.token;
-        }
-        return this.http.get<Recipie[]>(
-          'https://recipe-book-e2dc3-default-rtdb.firebaseio.com/recipes.json',
-          { params: new HttpParams().set('auth', userToken), observe: 'body' }
-        );
-      }),
-      map((recipies) => {
-        return recipies.map((recipe) => {
-          return {
-            ...recipe,
-            ingredients: recipe.ingredients ? recipe.ingredients : [],
-          };
-        });
-      }),
-      tap((recipes) => {
-        this.recipeService.setRecipes(recipes);
-      })
-    );
+    // return this.authService.user.pipe(
+    //   take(1), //to take one value from the observable and then unsubscribe
+    //   exhaustMap((user) => {
+    //     //waits for the fist observable to complete (authService.user), then return a new obervable that replaces the previous one
+    //     let userToken: string = '';
+    //     if (user) {
+    //       userToken = user.token;
+    //     }
+    return this.http
+      .get<Recipie[]>(
+        'https://recipe-book-e2dc3-default-rtdb.firebaseio.com/recipes.json'
+      )
+      .pipe(
+        map((recipies) => {
+          return recipies.map((recipe) => {
+            return {
+              ...recipe,
+              ingredients: recipe.ingredients ? recipe.ingredients : [],
+            };
+          });
+        }),
+        tap((recipes) => {
+          this.recipeService.setRecipes(recipes);
+        })
+      );
   }
 }
