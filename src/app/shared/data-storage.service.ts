@@ -35,7 +35,7 @@ export class DataStorageService {
       exhaustMap((user) => {
         //waits for the fist observable to complete (authService.user), then return a new obervable that replaces the previous one
         let userToken: string = '';
-        if (!!user) {
+        if (user) {
           userToken = user.token;
         }
         return this.http.get<Recipie[]>(
