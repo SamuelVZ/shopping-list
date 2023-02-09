@@ -18,7 +18,7 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item" *ngIf="isLoggedIn">
-          <button class="btn btn-danger">Logout</button>
+          <button class="btn btn-danger" (click)="onLogout()">Logout</button>
         </li>
         <li appDropdown class="nav-item dropdown" *ngIf="isLoggedIn">
           <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
