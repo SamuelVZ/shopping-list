@@ -14,16 +14,13 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { AuthInterceptor } from './components/auth/auth.interceptor';
 import { AlertComponent } from './shared/alert/alert.component';
 import { RecipesModule } from './components/recipies/recipes.module';
+import { ShoppingListModule } from './components/shooping-list/shopping-list.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-
-    ShoopingListComponent,
-    ShoppingEditComponent,
     DropdownDirective,
-
     AuthComponent,
     LoadingSpinnerComponent,
     AlertComponent,
@@ -35,6 +32,7 @@ import { RecipesModule } from './components/recipies/recipes.module';
     HttpClientModule,
     AppRoutingModule,
     RecipesModule,
+    ShoppingListModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
