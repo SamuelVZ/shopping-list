@@ -5,9 +5,11 @@
       <app-loading-spinner></app-loading-spinner>
     </div>
 
-    <div class="alert alert-danger mt-3" *ngIf="error">
+    <!-- <div class="alert alert-danger mt-3" *ngIf="error">
       {{ error }}
-    </div>
+    </div> -->
+
+    <app-alert [message]="error" *ngIf="error" (close)="onHandleClose()"></app-alert>
 
     <form [formGroup]="authForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
 
