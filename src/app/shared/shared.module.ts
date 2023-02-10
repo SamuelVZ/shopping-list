@@ -8,10 +8,10 @@ import { LoadingSpinnerComponent } from './loading-spinner/loading-spinner.compo
   declarations: [LoadingSpinnerComponent, AlertComponent, DropdownDirective],
   imports: [CommonModule],
   exports: [
+    CommonModule,
     LoadingSpinnerComponent,
     AlertComponent,
     DropdownDirective,
-    CommonModule,
   ],
 })
 export class SharedModule {}
