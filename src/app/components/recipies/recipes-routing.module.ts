@@ -10,7 +10,7 @@ import { RecipieDetailComponent } from './recipie-detail/recipie-detail.componen
 
 const routes: Routes = [
   {
-    path: 'recipes',
+    path: '',
     component: RecipiesComponent,
     canActivate: [AuthGuard],
     children: [
