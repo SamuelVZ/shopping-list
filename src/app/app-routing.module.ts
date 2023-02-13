@@ -19,6 +19,11 @@ const routes: Routes = [
         (m) => m.ShoppingListModule
       ),
   },
+  {
+    path: 'auth',
+    loadChildren: () =>
+      import('./components/auth/auth.module').then((m) => m.AuthModule),
+  },
 ];
 
 @NgModule({

@@ -5,20 +5,11 @@ import { HeaderComponent } from './components/header/header.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './components/auth/auth.interceptor';
-import { ShoppingListModule } from './components/shooping-list/shopping-list.module';
 import { SharedModule } from './shared/shared.module';
-import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    AppRoutingModule,
-    // ShoppingListModule,
-    SharedModule,
-    AuthModule,
-  ],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, SharedModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
