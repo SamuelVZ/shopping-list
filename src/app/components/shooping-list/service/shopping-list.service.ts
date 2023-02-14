@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subject } from 'rxjs';
 import { Ingredient } from 'src/app/shared/models/Ingredient.model';
-
+import * as ShoppingListActions from '../state/shopping-list.actions';
 @Injectable({
   providedIn: 'root',
 })
@@ -14,10 +15,13 @@ export class ShoppingListService {
     { name: 'Tomatoes', amount: 10 },
   ];
 
-  constructor() {}
+  constructor(
+    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
+  ) {}
 
-  getIngredients(): Ingredient[] {
-    return this.ingredients.slice();
+  getIngredients(): Observable<{ ingredients: Ingredient[] }> {
+    // return this.ingredients.slice();
+    return this.store.select('shoppingList');
   }
 
   getIngredient(index: number): Ingredient {
@@ -25,8 +29,9 @@ export class ShoppingListService {
   }
 
   addIngredient(newIngredient: Ingredient) {
-    this.ingredients.push(newIngredient);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    this.store.dispatch(
+      ShoppingListActions.addIngredient({ ingredient: newIngredient })
+    );
   }
   addIngredients(ingredients: Ingredient[]) {
     // spread operator "..." transform an array into a list

@@ -11,23 +11,19 @@ import { ShoppingListService } from './service/shopping-list.service';
 })
 export class ShoopingListComponent implements OnInit, OnDestroy {
   ingredients!: Observable<{ ingredients: Ingredient[] }>;
-  private ingChangedSub!: Subscription;
+  // private ingChangedSub!: Subscription;
 
-  constructor(
-    private shoppingListService: ShoppingListService,
-    private store: Store<{ shoppingList: { ingredients: Ingredient[] } }>
-  ) {}
+  constructor(private shoppingListService: ShoppingListService) {}
 
   ngOnInit(): void {
-    this.ingredients = this.store.select('shoppingList');
-    // this.ingredients = this.shoppingListService.getIngredients();
+    this.ingredients = this.shoppingListService.getIngredients();
     // this.ingChangedSub = this.shoppingListService.ingredientsChanged.subscribe(
     //   (newIngredients) => (this.ingredients = newIngredients)
     // );
   }
 
   ngOnDestroy(): void {
-    this.ingChangedSub.unsubscribe();
+    // this.ingChangedSub.unsubscribe();
   }
 
   onEditItem(index: number) {
