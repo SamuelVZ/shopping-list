@@ -18,7 +18,7 @@
     "@angular/platform-browser": "^14.0.0",
     "@angular/platform-browser-dynamic": "^14.0.0",
     "@angular/router": "^14.0.0",
-    "@ngrx/store": "^15.3.0",
+    "@ngrx/store": "^14.0.2",
     "bootstrap": "^5.2.3",
     "firebase": "^9.17.1",
     "rxjs": "~7.5.0",
