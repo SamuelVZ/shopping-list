@@ -6,10 +6,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './components/auth/auth.interceptor';
 import { SharedModule } from './shared/shared.module';
+import { StoreModule } from '@ngrx/store';
+import { shoppingListReducer } from './components/shooping-list/state/shopping-list.reducer';
 
+const reducers = {
+  shoppingList: shoppingListReducer,
+};
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, SharedModule],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    AppRoutingModule,
+    SharedModule,
+    StoreModule.forRoot(reducers),
+  ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
