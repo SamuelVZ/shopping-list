@@ -25,7 +25,12 @@ export class ShoppingListService {
   }
 
   getIngredient(index: number): Ingredient {
-    return this.ingredients[index];
+    // return this.ingredients[index];
+    let ingredientSelected: Ingredient = { name: '', amount: 0 };
+    this.store.select('shoppingList').subscribe((state) => {
+      ingredientSelected = state.ingredients[index];
+    });
+    return ingredientSelected;
   }
 
   addIngredient(newIngredient: Ingredient) {
@@ -43,8 +48,14 @@ export class ShoppingListService {
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
-    this.ingredients[index] = newIngredient;
-    this.ingredientsChanged.next(this.ingredients.slice());
+    // this.ingredients[index] = newIngredient;
+    // this.ingredientsChanged.next(this.ingredients.slice());
+    this.store.dispatch(
+      ShoppingListActions.updatedIngredient({
+        index: index,
+        ingredient: newIngredient,
+      })
+    );
   }
 
   deleteIngredient(index: number) {
