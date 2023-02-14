@@ -18,6 +18,23 @@ export const shoppingListReducer = createReducer(
   }),
   on(fromActions.addIngredients, (state, { ingredients }) => {
     return { ...state, ingredients: [...state.ingredients, ...ingredients] };
+  }),
+  on(fromActions.updatedIngredient, (state, { index, ingredient }) => {
+    const foundIngredient = state.ingredients[index];
+
+    const updateIngredient = {
+      ...foundIngredient,
+      ...ingredient,
+    };
+
+    const updatedIngredients = [...state.ingredients];
+
+    updatedIngredients[index] = updateIngredient;
+
+    return {
+      ...state,
+      ingredients: updatedIngredients,
+    };
   })
 );
 
