@@ -35,8 +35,11 @@ export class ShoppingListService {
   }
   addIngredients(ingredients: Ingredient[]) {
     // spread operator "..." transform an array into a list
-    this.ingredients.push(...ingredients);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    // this.ingredients.push(...ingredients);
+    // this.ingredientsChanged.next(this.ingredients.slice());
+    this.store.dispatch(
+      ShoppingListActions.addIngredients({ ingredients: ingredients })
+    );
   }
 
   updateIngredient(index: number, newIngredient: Ingredient) {
