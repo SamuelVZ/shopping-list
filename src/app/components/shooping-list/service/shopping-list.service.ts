@@ -59,7 +59,8 @@ export class ShoppingListService {
   }
 
   deleteIngredient(index: number) {
-    this.ingredients.splice(index, 1);
-    this.ingredientsChanged.next(this.ingredients.slice());
+    // this.ingredients.splice(index, 1);
+    // this.ingredientsChanged.next(this.ingredients.slice());
+    this.store.dispatch(ShoppingListActions.deleteIngredient({ index: index }));
   }
 }
