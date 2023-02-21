@@ -35,6 +35,14 @@ export const shoppingListReducer = createReducer(
       ...state,
       ingredients: updatedIngredients,
     };
+  }),
+  on(fromActions.deleteIngredient, (state, { index }) => {
+    const deletedIngredient = state.ingredients.filter(
+      (ingredient, ingIndex) => {
+        return ingIndex !== index;
+      }
+    );
+    return { state, ingredients: deletedIngredient };
   })
 );
 
